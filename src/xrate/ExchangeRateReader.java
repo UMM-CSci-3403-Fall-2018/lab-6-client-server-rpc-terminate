@@ -1,14 +1,17 @@
 package xrate;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Provide access to basic currency exchange rate services.
  * 
- * @author PUT YOUR TEAM NAME HERE
+ * @author terminate
  */
 public class ExchangeRateReader {
 
+    private URL baseURL;
     /**
      * Construct an exchange rate reader using the given base URL. All requests
      * will then be relative to that URL. If, for example, your source is Xavier
@@ -20,14 +23,15 @@ public class ExchangeRateReader {
      * @param baseURL
      *            the base URL for requests
      */
-    public ExchangeRateReader(String baseURL) {
-        // TODO Your code here
-        /*
-         * DON'T DO MUCH HERE!
-         * People often try to do a lot here, but the action is actually in
-         * the two methods below. All you need to do here is store the
-         * provided `baseURL` in a field so it will be accessible later.
-         */
+    public ExchangeRateReader(String baseURL) throws MalformedURLException {
+
+        try {
+            this.baseURL = new URL(baseURL);
+        }
+        catch (MalformedURLException m) {
+            System.out.println("Bad URL!");
+        }
+
     }
 
     /**
@@ -47,6 +51,7 @@ public class ExchangeRateReader {
      */
     public float getExchangeRate(String currencyCode, int year, int month, int day) throws IOException {
         // TODO Your code here
+
         throw new UnsupportedOperationException();
     }
 
