@@ -89,8 +89,26 @@ public class ExchangeRateReader {
     public float getExchangeRate(
             String fromCurrency, String toCurrency,
             int year, int month, int day) throws IOException {
-        // TODO Your code here
-        throw new UnsupportedOperationException();
+        String monthLeading = String.format("%02d", month);
+        String dayLeading = String.format("%02d", day);
+
+        // Construct URL with specific date endpoint
+        URL dateURL = new URL(baseURL + year + "-" + monthLeading + "-" + dayLeading);
+
+        // Get raw data and convert to JSON
+        InputStream inputStream = dateURL.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        JsonObject payload = new JsonParser().parse(reader).getAsJsonObject();
+
+        // Parse out value at "rates" key
+        JsonObject rates = payload.getAsJsonObject("rates");
+
+        // Get exchange rates for the two different currencies
+        float fromRate = getRate(rates, fromCurrency);
+        float toRate = getRate(rates, toCurrency);
+
+        // Return exchange rate relative to each other
+        return fromRate/toRate;
     }
 
     /**

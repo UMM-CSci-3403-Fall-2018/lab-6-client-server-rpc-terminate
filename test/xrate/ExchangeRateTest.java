@@ -46,7 +46,7 @@ public class ExchangeRateTest {
     public void checkUSDvsGBP20100625() throws IOException, ParserConfigurationException, SAXException {
         ExchangeRateReader xrReader = new ExchangeRateReader(NICS_DUMMY_DATA_URL);
         float rate = xrReader.getExchangeRate("USD", "GBP", 2010, 6, 25);
-        assertEquals(1.492714910151, rate, DELTA);
+        assertEquals(1.4986571073532104, rate, DELTA);
     }
 
     // TO GET THIS TEST TO RUN YOU NEED TO ADD A VALID ACCESS KEY IN THE URL
