@@ -68,6 +68,7 @@ public class ExchangeRateReader {
         return getRate(rates, currencyCode);
 
     }
+    
 
     /**
      * Get the exchange rate of the first specified currency against the second
